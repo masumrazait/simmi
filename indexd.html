@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Masum Raza & Simmi Praveen">
+<title>✨ Masum & Simmi Wedding✨ — </title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════
+   ROOT VARIABLES & RESET
+═══════════════════════════════════════════ */
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F0D060;
+  --gold-dark: #A07820;
+  --gold-glow: rgba(212,175,55,0.4);
+  --emerald: #1A5C3A;
+  --emerald-light: #2E8B57;
+  --emerald-glow: rgba(26,92,58,0.5);
+  --black-deep: #040608;
+  --black-rich: #080C10;
+  --black-card: #0A0E14;
+  --ivory: #F8F4E8;
+  --ivory-warm: #EDE8D5;
+  --cream: #F5EDD8;
+  --white-soft: rgba(255,255,255,0.85);
+  --beige: #C9B99A;
+  --text-light: rgba(255,255,255,0.9);
+  --text-gold: #E8C84A;
+  --shadow-gold: 0 0 30px rgba(212,175,55,0.3), 0 0 60px rgba(212,175,55,0.15);
+  --font-arabic: 'Amiri', serif;
+  --font-urdu: 'Noto Nastaliq Urdu', serif;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Playfair Display', serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--black-deep);
+  color: var(--ivory);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ═══════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════ */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top:0; left:0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 12px var(--gold), 0 0 24px var(--gold-glow);
+}
+.cursor-follower {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(212,175,55,0.5);
+  border-radius: 50%;
+  position: fixed; top:0; left:0;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: all 0.3s ease;
+}
+@media (max-width: 768px) { .cursor, .cursor-follower { display: none; } }
+
+/* ═══════════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════════ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black-deep);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.loader-bismillah {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold-glow), 0 0 40px var(--gold-glow);
+  opacity: 0;
+  animation: fadeGlow 2s ease forwards 0.3s;
+}
+.loader-progress {
+  width: 200px; height: 2px;
+  background: rgba(212,175,55,0.2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  animation: loadBar 2.5s ease forwards 0.5s;
+}
+.loader-text {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  color: rgba(212,175,55,0.7);
+  text-transform: uppercase;
+}
+@keyframes loadBar { to { width: 100%; } }
+@keyframes fadeGlow { 0%{opacity:0;transform:scale(0.9)} 100%{opacity:1;transform:scale(1)} }
+
+/* ═══════════════════════════════════════════
+   ISLAMIC ORNAMENT SVG
+═══════════════════════════════════════════ */
+.ornament { display: flex; justify-content: center; margin: 1.5rem 0; }
+.ornament svg { overflow: visible; }
+
+/* ═══════════════════════════════════════════
+   HERO SECTION
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+/* Animated Sky/Stars Background */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+/* Mosque Silhouette */
+.mosque-silhouette {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Gold Frame Border */
+.hero-frame {
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(212,175,55,0.25);
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-frame::before, .hero-frame::after {
+  content: '';
+  position: absolute;
+  width: 40px; height: 40px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.hero-frame::before { top:-1px; left:-1px; border-width:2px 0 0 2px; }
+.hero-frame::after { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+
+/* Fog/Mist layer */
+.hero-fog {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(4,6,8,0.95) 0%, rgba(4,6,8,0.5) 60%, transparent 100%);
+  z-index: 2;
+}
+.hero-fog-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 25%;
+  background: linear-gradient(to bottom, rgba(4,6,8,0.7) 0%, transparent 100%);
+  z-index: 2;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 900px;
+  width: 100%;
+}
+
+.bismillah-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+  color: var(--gold-light);
+  text-shadow: 0 0 25px rgba(212,175,55,0.6), 0 0 50px rgba(212,175,55,0.3);
+  line-height: 1.6;
+  margin-bottom: 0.3rem;
+  opacity: 0;
+}
+.bismillah-english {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1.8vw, 1rem);
+  letter-spacing: 0.2em;
+  color: rgba(212,175,55,0.7);
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem auto;
+}
+.hero-divider-line {
+  width: clamp(60px, 15vw, 120px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-divider-gem {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px var(--gold);
+}
+
+.wedding-title-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(212,175,55,0.5);
+  line-height: 1.4;
+  opacity: 0;
+}
+.wedding-title-english {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  letter-spacing: 0.35em;
+  color: var(--ivory-warm);
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  opacity: 0;
+}
+
+.couple-names {
+  margin: 2.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  opacity: 0;
+}
+.name-block {
+  text-align: center;
+}
+.name-urdu {
+  font-family: var(--font-urdu);
+  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  color: var(--gold-light);
+  text-shadow: 0 0 20px rgba(212,175,55,0.4);
+  line-height: 2;
+  display: block;
+}
+.name-english {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-style: italic;
+  color: var(--ivory);
+  font-weight: 300;
+  display: block;
+  letter-spacing: 0.05em;
+}
+.couple-ampersand {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--gold);
+  font-style: italic;
+  line-height: 1;
+  text-shadow: var(--shadow-gold);
+}
+
+.hero-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid rgba(212,175,55,0.4);
+  padding: 0.7rem 2rem;
+  border-radius: 2px;
+  background: rgba(212,175,55,0.05);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+}
+.hero-date-badge span {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* Floating lanterns */
+.lantern {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  animation: floatLantern linear infinite;
+}
+@keyframes floatLantern {
+  0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+  5% { opacity: 0.8; }
+  95% { opacity: 0.6; }
+  100% { transform: translateY(-20vh) translateX(30px) rotate(5deg); opacity: 0; }
+}
+
+/* Crescent Moon */
+.crescent-moon {
+  position: absolute;
+  top: 8%; right: 8%;
+  z-index: 3;
+  opacity: 0;
+  animation: moonGlow 3s ease-in-out infinite alternate;
+}
+@keyframes moonGlow {
+  0% { filter: drop-shadow(0 0 10px rgba(212,175,55,0.4)); }
+  100% { filter: drop-shadow(0 0 25px rgba(212,175,55,0.8)) drop-shadow(0 0 50px rgba(212,175,55,0.3)); }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE STYLES
+═══════════════════════════════════════════ */
+section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+.section-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+.section-label {
+  font-family: var(--font-display);
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.8rem;
+  opacity: 0.8;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  color: var(--ivory);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.section-title-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold-glow);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Gold Line Separator */
+.gold-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 1.5rem auto;
+  max-width: 300px;
+}
+.gold-sep-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent); }
+.gold-sep-star { color: var(--gold); font-size: 0.8rem; }
+
+/* ═══════════════════════════════════════════
+   FAMILY DETAILS SECTION
+═══════════════════════════════════════════ */
+#family {
+  background: linear-gradient(180deg, var(--black-deep) 0%, #060B10 50%, var(--black-deep) 100%);
+}
+
+.family-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (max-width: 700px) { .family-grid { grid-template-columns: 1fr; } }
+
+.family-card {
+  background: linear-gradient(135deg, rgba(212,175,55,0.07) 0%, rgba(10,14,20,0.95) 50%, rgba(26,92,58,0.05) 100%);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 2px;
+  padding: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+.family-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top center, rgba(212,175,55,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+/* Corner ornaments */
+.family-card::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border-top: 1px solid rgba(212,175,55,0.1);
+  border-bottom: 1px solid rgba(212,175,55,0.1);
+  pointer-events: none;
+}
+
+.card-role {
+  font-family: var(--font-display);
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1.2rem;
+}
+.card-name-urdu {
+  font-family: var(--font-urdu);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--gold-light);
+  text-shadow: 0 0 15px rgba(212,175,55,0.3);
+  line-height: 2;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.card-name-english {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ivory);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.card-detail {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  color: rgba(255,255,255,0.6);
+  line-height: 2;
+  font-weight: 300;
+}
+.card-detail strong {
+  color: rgba(212,175,55,0.8);
+  font-weight: 400;
+}
+.card-detail-line {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.family-icon {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   SAVE THE DATE / TIMELINE SECTION
+═══════════════════════════════════════════ */
+#events {
+  background: linear-gradient(180deg, var(--black-deep) 0%, #05080C 50%, var(--black-deep) 100%);
+}
+
+/* Countdown */
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  flex-wrap: wrap;
+  margin: 2rem auto 4rem;
+}
+.countdown-block {
+  background: rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.2);
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  min-width: 85px;
+  position: relative;
+}
+.countdown-block::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(212,175,55,0.08);
+  pointer-events: none;
+}
+.countdown-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+  text-shadow: 0 0 20px rgba(212,175,55,0.4);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.countdown-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: rgba(212,175,55,0.6);
+  text-transform: uppercase;
+}
+
+/* Event Timeline */
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  transform: translateX(-50%);
+}
+@media (max-width: 600px) {
+  .timeline::before { left: 28px; }
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+}
+.timeline-item:nth-child(odd) .event-card { grid-column: 1; text-align: right; }
+.timeline-item:nth-child(odd) .event-spacer { grid-column: 2; }
+.timeline-item:nth-child(odd) .event-empty { grid-column: 3; }
+.timeline-item:nth-child(even) .event-empty { grid-column: 1; }
+.timeline-item:nth-child(even) .event-spacer { grid-column: 2; }
+.timeline-item:nth-child(even) .event-card { grid-column: 3; text-align: left; }
+
+@media (max-width: 600px) {
+  .timeline-item {
+    grid-template-columns: 60px 1fr;
+    gap: 1rem;
+  }
+  .timeline-item:nth-child(odd) .event-card,
+  .timeline-item:nth-child(even) .event-card { 
+    grid-column: 2; text-align: left; 
+    grid-row: 1;
+  }
+  .timeline-item:nth-child(odd) .event-spacer,
+  .timeline-item:nth-child(even) .event-spacer { 
+    grid-column: 1; grid-row: 1;
+  }
+  .event-empty { display: none; }
+}
+
+.event-dot {
+  width: 14px; height: 14px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--gold), 0 0 24px rgba(212,175,55,0.3);
+  margin: 0 auto;
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 12px var(--gold), 0 0 24px rgba(212,175,55,0.3); }
+  50% { box-shadow: 0 0 20px var(--gold), 0 0 40px rgba(212,175,55,0.5), 0 0 60px rgba(212,175,55,0.2); }
+}
+
+.event-card {
+  background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(8,12,16,0.9) 100%);
+  border: 1px solid rgba(212,175,55,0.2);
+  padding: 1.5rem;
+  position: relative;
+}
+.event-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.event-date {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  color: var(--ivory-warm);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.event-time {
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.6vw, 0.85rem);
+  color: rgba(212,175,55,0.7);
+  font-style: italic;
+  display: block;
+}
+.event-location {
+  font-size: clamp(0.68rem, 1.4vw, 0.8rem);
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   QUR'AN / DUA SECTION
+═══════════════════════════════════════════ */
+#quran {
+  background: linear-gradient(180deg, var(--black-deep) 0%, #04090E 50%, var(--black-deep) 100%);
+  text-align: center;
+}
+
+.quran-verse-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.3rem, 3.5vw, 2.5rem);
+  color: var(--gold-light);
+  text-shadow: 0 0 25px rgba(212,175,55,0.4);
+  line-height: 2;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid rgba(212,175,55,0.2);
+  background: rgba(212,175,55,0.03);
+  position: relative;
+}
+.quran-verse-arabic::before,
+.quran-verse-arabic::after {
+  content: '';
+  position: absolute;
+  width: 30px; height: 30px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.quran-verse-arabic::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.quran-verse-arabic::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.quran-translation {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  max-width: 600px;
+  margin: 1rem auto 0;
+  line-height: 1.9;
+}
+.quran-ref {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: rgba(212,175,55,0.5);
+  letter-spacing: 0.2em;
+  margin-top: 0.8rem;
+  display: block;
+}
+
+.dua-block {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(26,92,58,0.05));
+  border: 1px solid rgba(212,175,55,0.15);
+  text-align: center;
+  opacity: 0;
+}
+.dua-arabic {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+  color: var(--gold);
+  line-height: 2;
+  display: block;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(212,175,55,0.3);
+}
+.dua-urdu {
+  font-family: var(--font-urdu);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: var(--ivory-warm);
+  line-height: 2.2;
+  display: block;
+  margin-bottom: 0.8rem;
+  direction: rtl;
+}
+.dua-english {
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.8vw, 0.95rem);
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  line-height: 1.8;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   FAMILY INVITATION SECTION
+═══════════════════════════════════════════ */
+#invitation {
+  background: linear-gradient(180deg, var(--black-deep) 0%, #040A0F 50%, var(--black-deep) 100%);
+  text-align: center;
+}
+
+.invitation-headline {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.invitation-subheadline {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ivory);
+  margin-bottom: 3rem;
+}
+
+.family-names-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(8,12,16,0.95), rgba(26,92,58,0.04));
+  border: 1px solid rgba(212,175,55,0.2);
+  padding: clamp(2rem, 5vw, 4rem);
+  position: relative;
+}
+.family-names-container::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212,175,55,0.08);
+  pointer-events: none;
+}
+
+.family-patriarch {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--gold-light);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.family-patriarch.deceased {
+  color: rgba(212,175,55,0.6);
+}
+.family-patriarch.deceased::before { content: 'Late '; }
+
+.names-divider {
+  border: none;
+  border-top: 1px solid rgba(212,175,55,0.15);
+  margin: 1.5rem 0;
+}
+
+.names-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.name-chip {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  color: rgba(255,255,255,0.75);
+  font-style: italic;
+  position: relative;
+  padding: 0 0.5rem;
+}
+.name-chip::after {
+  content: '·';
+  position: absolute;
+  right: -0.9rem;
+  color: rgba(212,175,55,0.3);
+}
+.name-chip:last-child::after { display: none; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--black-rich);
+  border-top: 1px solid rgba(212,175,55,0.1);
+}
+.footer-bismillah {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold-glow);
+  margin-bottom: 1rem;
+}
+.footer-text {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: rgba(212,175,55,0.4);
+  text-transform: uppercase;
+}
+.footer-hearts { color: var(--gold); font-size: 1.2rem; margin: 1rem 0; }
+
+/* ═══════════════════════════════════════════
+   FLOATING PARTICLES GLOBAL
+═══════════════════════════════════════════ */
+.particle-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.particle {
+  position: absolute;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+  opacity: 0;
+}
+@keyframes particleFloat {
+  0% { transform: translateY(100%) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE TWEAKS
+═══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero-frame { inset: 8px; }
+  .couple-names { gap: 1rem; }
+  .timeline::before { display: none; }
+}
+
+/* Glowing scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+
+/* Selection */
+::selection { background: rgba(212,175,55,0.3); color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- ═══════════════════════════════════════════
+     LOADING SCREEN
+═══════════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+  <div class="loader-progress"><div class="loader-bar"></div></div>
+  <div class="loader-text"> Masum 💕Weds💕 Simmi </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-fog-top"></div>
+  <div class="hero-fog"></div>
+  <div class="hero-frame"></div>
+
+  <!-- Crescent Moon SVG -->
+  <div class="crescent-moon" id="crescentMoon">
+    <svg width="70" height="70" viewBox="0 0 70 70">
+      <defs>
+        <radialGradient id="moonGrad" cx="40%" cy="40%">
+          <stop offset="0%" stop-color="#F0D060"/>
+          <stop offset="100%" stop-color="#A07820"/>
+        </radialGradient>
+      </defs>
+      <circle cx="35" cy="35" r="25" fill="url(#moonGrad)" opacity="0.9"/>
+      <circle cx="48" cy="28" r="20" fill="#040608"/>
+      <circle cx="35" cy="35" r="27" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <!-- Mosque Silhouette -->
+  <div class="mosque-silhouette">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;opacity:0.85;">
+      <defs>
+        <linearGradient id="mosqueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#0D1A0A" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#040608" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="domeGold" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#040608" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Main mosque body -->
+      <path d="M0 320 L0 200 L120 200 L120 180 L180 180 L180 200 L220 200 L220 150 L260 110 Q290 70 320 110 L360 150 L360 200 L400 200 L400 180 L460 180 L460 200 L500 200 L500 240 L540 240 L540 200 
+               L560 200 L560 150 L580 120 L590 90 Q610 50 660 60 Q670 40 720 30 Q770 40 780 60 Q830 50 850 90 L860 120 L880 150 L880 200 
+               L900 200 L900 240 L940 240 L940 200 L980 200 L980 180 L1040 180 L1040 200 L1080 200 L1080 150 L1120 110 Q1150 70 1180 110 L1220 150 L1220 200 
+               L1260 200 L1260 180 L1320 180 L1320 200 L1440 200 L1440 320 Z" fill="url(#mosqueGrad)"/>
+      <!-- Central dome glow -->
+      <ellipse cx="720" cy="55" rx="80" ry="40" fill="url(#domeGold)" opacity="0.6"/>
+      <!-- Minarets -->
+      <rect x="590" y="60" width="12" height="180" fill="#0D1A0A" rx="1"/>
+      <path d="M584 60 L602 60 L596 40 L586 40 Z" fill="#0D1A0A"/>
+      <circle cx="596" cy="38" r="4" fill="#D4AF37" opacity="0.5"/>
+      <rect x="840" y="60" width="12" height="180" fill="#0D1A0A" rx="1"/>
+      <path d="M834 60 L852 60 L846 40 L836 40 Z" fill="#0D1A0A"/>
+      <circle cx="846" cy="38" r="4" fill="#D4AF37" opacity="0.5"/>
+      <!-- Star atop dome -->
+      <text x="718" y="20" text-anchor="middle" font-size="16" fill="#D4AF37" opacity="0.7">☽</text>
+    </svg>
+  </div>
+
+  <!-- Main Hero Content -->
+  <div class="hero-content" id="heroContent">
+    <!-- Bismillah -->
+    <div class="bismillah-arabic" id="bismillahArabic">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <div class="bismillah-english" id="bismillahEnglish">In the name of Allah, the Most Gracious, the Most Merciful</div>
+
+    <!-- Gold Divider -->
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-gem"></div>
+      <div class="hero-divider-gem" style="background:var(--emerald-light);box-shadow:0 0 10px var(--emerald-light)"></div>
+      <div class="hero-divider-gem"></div>
+      <div class="hero-divider-line"></div>
+    </div>
+
+    <!-- Wedding Title -->
+    <div class="wedding-title-arabic" id="weddingTitleAr">✨ عقدِ مبارک ✨</div>
+    <div class="wedding-title-english" id="weddingTitleEn">Masum & Simmi — Wedding Invitation</div>
+
+    <!-- Gold Divider -->
+    <div class="hero-divider" style="margin:2rem auto">
+      <div class="hero-divider-line"></div>
+      <svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,1 12,8 19,8 13,13 15,19 10,15 5,19 7,13 1,8 8,8" fill="#D4AF37" opacity="0.8"/></svg>
+      <div class="hero-divider-line"></div>
+    </div>
+
+    <!-- Couple Names -->
+    <div class="couple-names" id="coupleNames">
+      <div class="name-block">
+        <span class="name-urdu">محمد مسعود رضا</span>
+        <span class="name-english">Masum Raza</span>
+      </div>
+      <div class="couple-ampersand">&amp;</div>
+      <div class="name-block">
+        <span class="name-urdu">سمی پراوین</span>
+        <span class="name-english">Simmi Praveen</span>
+      </div>
+    </div>
+
+    <!-- Date Badge -->
+    <div class="hero-date-badge" id="heroDateBadge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>29th October 2026 — Nikah</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Firojpur, Saran</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAMILY DETAILS SECTION
+═══════════════════════════════════════════ -->
+<section id="family">
+  <div class="section-bg-pattern"></div>
+  <div class="section-header reveal">
+    <span class="section-label">The Blessed Families</span>
+    <span class="section-title-arabic">خاندانی تفصیلات</span>
+    <h2 class="section-title">Family Details</h2>
+    <div class="gold-sep"><div class="gold-sep-line"></div><span class="gold-sep-star">✦</span><div class="gold-sep-line"></div></div>
+  </div>
+
+  <div class="family-grid">
+    <!-- Groom -->
+    <div class="family-card reveal">
+      <span class="family-icon">💍</span>
+      <span class="card-role">The Groom — دولہا</span>
+      <div class="ornament">
+        <svg width="120" height="12" viewBox="0 0 120 12">
+          <line x1="0" y1="6" x2="42" y2="6" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+          <polygon points="50,6 55,1 60,6 55,11" fill="#D4AF37" opacity="0.7"/>
+          <polygon points="60,6 65,1 70,6 65,11" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+          <line x1="78" y1="6" x2="120" y2="6" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+      </div>
+      <span class="card-name-urdu">مسعود رضا</span>
+      <span class="card-name-english">Masum Raza</span>
+      <div class="gold-sep"><div class="gold-sep-line"></div><span class="gold-sep-star" style="font-size:0.5rem">◆</span><div class="gold-sep-line"></div></div>
+      <p class="card-detail">
+        <span class="card-detail-line"><strong>S/o</strong> Abdul Aziz Ansari</span>
+        <span class="card-detail-line"><strong>G/o</strong> Late Noor Hasan Ansari</span>
+        <span class="card-detail-line" style="margin-top:0.5rem; color:rgba(212,175,55,0.5);">Basantpur Bangla, Amnour, Saran</span>
+      </p>
+    </div>
+
+    <!-- Bride -->
+    <div class="family-card reveal" style="transition-delay:0.2s">
+      <span class="family-icon">🌸</span>
+      <span class="card-role">The Bride — دلہن</span>
+      <div class="ornament">
+        <svg width="120" height="12" viewBox="0 0 120 12">
+          <line x1="0" y1="6" x2="42" y2="6" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+          <polygon points="50,6 55,1 60,6 55,11" fill="#D4AF37" opacity="0.7"/>
+          <polygon points="60,6 65,1 70,6 65,11" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+          <line x1="78" y1="6" x2="120" y2="6" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+      </div>
+      <span class="card-name-urdu">سمی پراوین</span>
+      <span class="card-name-english">Simmi Praveen</span>
+      <div class="gold-sep"><div class="gold-sep-line"></div><span class="gold-sep-star" style="font-size:0.5rem">◆</span><div class="gold-sep-line"></div></div>
+      <p class="card-detail">
+        <span class="card-detail-line"><strong>D/o</strong> Abdul Majid Ansari</span>
+        <span class="card-detail-line"><strong>G/o</strong> Late Anual Haq Ansari</span>
+        <span class="card-detail-line" style="margin-top:0.5rem; color:rgba(212,175,55,0.5);">Firojpur, Bheldi, Saran</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SAVE THE DATE SECTION
+═══════════════════════════════════════════ -->
+<section id="events">
+  <div class="section-bg-pattern"></div>
+  <div class="section-header reveal">
+    <span class="section-label">Mark Your Calendar</span>
+    <span class="section-title-arabic">✨ تاریخ یاد رکھیں ✨</span>
+    <h2 class="section-title">Save The Date</h2>
+    <div class="gold-sep"><div class="gold-sep-line"></div><span class="gold-sep-star">✦</span><div class="gold-sep-line"></div></div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-container reveal" id="countdown">
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-days">--</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-hours">--</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-mins">--</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-secs">--</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <!-- Milad -->
+    <div class="timeline-item" id="tl1">
+      <div class="event-card">
+        <span class="event-name">🕯️ Milad-un-Nabi</span>
+        <span class="event-date">28th October 2026</span>
+        <span class="event-time">7:00 PM Evening</span>
+        <span class="event-location">Basantpur Bangla, Saran</span>
+      </div>
+      <div class="event-spacer"><div class="event-dot"></div></div>
+      <div class="event-empty"></div>
+    </div>
+
+    <!-- Barat -->
+    <div class="timeline-item" id="tl2">
+      <div class="event-empty"></div>
+      <div class="event-spacer"><div class="event-dot" style="background:var(--emerald-light);box-shadow:0 0 12px var(--emerald-light)"></div></div>
+      <div class="event-card">
+        <span class="event-name">🎊 Barat</span>
+        <span class="event-date">29th October 2026</span>
+        <span class="event-time">Evening — 6:00 PM</span>
+        <span class="event-location">Firojpur, Bheldi, Saran</span>
+      </div>
+    </div>
+
+    <!-- Nikah -->
+    <div class="timeline-item" id="tl3">
+      <div class="event-card">
+        <span class="event-name">💕 Nikah</span>
+        <span class="event-date">29th October 2026</span>
+        <span class="event-time">9:00 PM — Night</span>
+        <span class="event-location">Firojpur, Bheldi, Saran</span>
+      </div>
+      <div class="event-spacer"><div class="event-dot" style="width:18px;height:18px;background:linear-gradient(135deg,var(--gold),var(--gold-light))"></div></div>
+      <div class="event-empty"></div>
+    </div>
+
+    <!-- Walima -->
+    <div class="timeline-item" id="tl4">
+      <div class="event-empty"></div>
+      <div class="event-spacer"><div class="event-dot" style="background:var(--gold-light)"></div></div>
+      <div class="event-card">
+        <span class="event-name">🍽️ Dawat-e-Walima</span>
+        <span class="event-date">31st October 2026</span>
+        <span class="event-time">1:00 PM — Noon</span>
+        <span class="event-location">Basantpur Bangla, Amnour, Saran</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     QUR'AN & DUA SECTION
+═══════════════════════════════════════════ -->
+<section id="quran">
+  <div class="section-bg-pattern"></div>
+  <div class="section-header reveal">
+    <span class="section-label">Blessed Verses</span>
+    <span class="section-title-arabic">قرآنی آیات و دعا</span>
+    <h2 class="section-title">Nikah & Dua</h2>
+    <div class="gold-sep"><div class="gold-sep-line"></div><span class="gold-sep-star">✦</span><div class="gold-sep-line"></div></div>
+  </div>
+
+  <div class="quran-verse-arabic reveal">
+    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+  </div>
+  <p class="quran-translation reveal">
+    "And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts."
+  </p>
+  <span class="quran-ref reveal">— Surah Ar-Rum 30:21</span>
+
+  <div class="gold-sep" style="margin:3rem auto"><div class="gold-sep-line"></div><span class="gold-sep-star">✦</span><div class="gold-sep-line"></div></div>
+
+  <!-- Dua Block -->
+  <div class="dua-block" id="duaBlock">
+    <span class="dua-arabic">بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</span>
+    <span class="dua-urdu" dir="rtl">اللہ آپ کو برکت دے، آپ پر برکت نازل فرمائے اور آپ دونوں کو بھلائی میں جمع کرے</span>
+    <span class="dua-english">"May Allah bless you and shower His blessings upon you, and may He unite you both in goodness."</span>
+  </div>
+
+  <div class="dua-block reveal" style="margin-top:1.5rem">
+    <span class="dua-arabic">اللَّهُمَّ أَلِّفْ بَيْنَ قُلُوبِهِمَا</span>
+    <span class="dua-urdu" dir="rtl">اے اللہ! ان دونوں کے دلوں کو آپس میں ملا دے</span>
+    <span class="dua-english">"O Allah, unite their hearts in love."</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAMILY INVITATION SECTION
+═══════════════════════════════════════════ -->
+<section id="invitation">
+  <div class="section-bg-pattern"></div>
+  <div class="section-header reveal">
+    <span class="section-label">Ansari Family</span>
+    <span class="section-title-arabic">خاندانِ انصاری</span>
+    <h2 class="section-title">Family Invitation</h2>
+    <div class="gold-sep"><div class="gold-sep-line"></div><span class="gold-sep-star">✦</span><div class="gold-sep-line"></div></div>
+  </div>
+
+  <p class="invitation-headline reveal">With Full Heart</p>
+  <p class="invitation-subheadline reveal">Be Love & Welcome</p>
+
+  <div class="family-names-container reveal">
+    <p style="font-family:var(--font-display);font-size:clamp(0.7rem,1.5vw,0.8rem);letter-spacing:0.4em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:2rem;">The Entire Ansari Family Joyfully Invites You</p>
+
+    <!-- Patriarchs -->
+    <div class="family-patriarch deceased">Noor Hasan Ansari</div>
+    <div class="family-patriarch" style="color:var(--gold-light);">Abdul Aziz Ansari</div>
+    <div class="family-patriarch deceased">A. Hakim Ansari</div>
+    <div class="family-patriarch" style="color:var(--ivory-warm);">A. Rahim Ansari</div>
+    <div class="family-patriarch" style="color:var(--ivory-warm);">A. Najir Ansari</div>
+    <div class="family-patriarch" style="color:var(--ivory-warm);">A. Rasid Ansari</div>
+
+    <hr class="names-divider">
+
+    <p style="font-family:var(--font-display);font-size:clamp(0.65rem,1.4vw,0.75rem);letter-spacing:0.3em;color:rgba(212,175,55,0.5);text-transform:uppercase;margin-bottom:1.2rem;">And All Family Members</p>
+
+    <div class="names-grid">
+      <span class="name-chip">Aftab</span>
+      <span class="name-chip">Sarfraz</span>
+      <span class="name-chip">Khursid</span>
+      <span class="name-chip">Arman</span>
+      <span class="name-chip">Azharodin</span>
+      <span class="name-chip">Sonu</span>
+      <span class="name-chip">Altaf</span>
+      <span class="name-chip">Imteyaj</span>
+      <span class="name-chip">Sami</span>
+      <span class="name-chip">Belal</span>
+      <span class="name-chip">Soheb</span>
+      <span class="name-chip">Aadil</span>
+      <span class="name-chip">Haroon</span>
+      <span class="name-chip">Mannat</span>
+      <span class="name-chip">Falak</span>
+    </div>
+
+    <div class="gold-sep" style="margin:2rem auto;max-width:200px"><div class="gold-sep-line"></div><span class="gold-sep-star">☽</span><div class="gold-sep-line"></div></div>
+
+    <p style="font-family:var(--font-display);font-style:italic;font-size:clamp(0.85rem,1.8vw,1rem);color:rgba(255,255,255,0.5);line-height:1.9;">
+      Your presence and blessings will make this celebration complete.<br>
+      <span style="color:rgba(212,175,55,0.6)">جزاك الله خيراً</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-bismillah">بِسْمِ ٱللَّٰهِ</div>
+  <div class="footer-hearts">✦ ☽ ✦</div>
+  <p class="footer-text">Masum Raza &amp; Simmi Praveen — October 2026</p>
+  <p class="footer-text" style="margin-top:0.5rem;font-size:0.65rem;opacity:0.4;">Made with Love &amp; Dua — Ansari Family, Saran</p>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ════════════════════════════
+// CURSOR
+// ════════════════════════════
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursorFollower');
+let mouseX = 0, mouseY = 0;
+let followerX = 0, followerY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateFollower() {
+  followerX += (mouseX - followerX) * 0.12;
+  followerY += (mouseY - followerY) * 0.12;
+  follower.style.left = followerX + 'px';
+  follower.style.top = followerY + 'px';
+  requestAnimationFrame(animateFollower);
+}
+animateFollower();
+
+// ════════════════════════════
+// HERO CANVAS — STARS + PARTICLES
+// ════════════════════════════
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let shootingStars = [];
+let W, H;
+
+function resizeCanvas() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  initStars();
+}
+
+function initStars() {
+  stars = [];
+  const count = Math.min(Math.floor(W * H / 3000), 250);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * W,
+      y: Math.random() * H * 0.75,
+      r: Math.random() * 1.4 + 0.2,
+      opacity: Math.random() * 0.8 + 0.1,
+      twinkle: Math.random() * Math.PI * 2,
+      twinkleSpeed: Math.random() * 0.025 + 0.008,
+      gold: Math.random() < 0.15
+    });
+  }
+}
+
+function addShootingStar() {
+  if (Math.random() < 0.008) {
+    shootingStars.push({
+      x: Math.random() * W, y: 0,
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 3 + 2,
+      len: Math.random() * 80 + 40,
+      opacity: 1, life: 0
+    });
+  }
+}
+
+function drawBg() {
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, '#010408');
+  grad.addColorStop(0.4, '#030810');
+  grad.addColorStop(0.7, '#050D0A');
+  grad.addColorStop(1, '#040608');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawStars() {
+  stars.forEach(s => {
+    s.twinkle += s.twinkleSpeed;
+    const op = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    if (s.gold) {
+      ctx.fillStyle = `rgba(212,175,55,${op})`;
+    } else {
+      ctx.fillStyle = `rgba(240,230,200,${op * 0.7})`;
+    }
+    ctx.fill();
+  });
+}
+
+function drawShootingStars() {
+  shootingStars = shootingStars.filter(s => s.life < 1);
+  shootingStars.forEach(s => {
+    s.x += s.vx; s.y += s.vy;
+    s.life += 0.02;
+    const op = (1 - s.life) * 0.8;
+    ctx.beginPath();
+    ctx.moveTo(s.x, s.y);
+    ctx.lineTo(s.x - s.vx * s.len / 3, s.y - s.vy * s.len / 3);
+    const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.vx * s.len / 3, s.y - s.vy * s.len / 3);
+    grad.addColorStop(0, `rgba(212,175,55,${op})`);
+    grad.addColorStop(1, 'rgba(212,175,55,0)');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+}
+
+function heroLoop() {
+  drawBg();
+  drawStars();
+  addShootingStar();
+  drawShootingStars();
+  requestAnimationFrame(heroLoop);
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+heroLoop();
+
+// ════════════════════════════
+// LOADING SCREEN
+// ════════════════════════════
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    gsap.to('#loader', {
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        document.getElementById('loader').style.display = 'none';
+        heroEntrance();
+      }
+    });
+  }, 2800);
+});
+
+// ════════════════════════════
+// HERO ENTRANCE ANIMATION
+// ════════════════════════════
+function heroEntrance() {
+  gsap.registerPlugin(TextPlugin);
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+  tl.to('#crescentMoon', { opacity: 1, duration: 1.5 })
+    .to('#bismillahArabic', { opacity: 1, y: 0, duration: 1.2 }, '-=0.8')
+    .to('#bismillahEnglish', { opacity: 1, duration: 1 }, '-=0.5')
+    .to('#weddingTitleAr', { opacity: 1, y: 0, duration: 1.2 }, '-=0.3')
+    .to('#weddingTitleEn', { opacity: 1, duration: 0.9 }, '-=0.5')
+    .to('#coupleNames', { opacity: 1, duration: 1.2 }, '-=0.3')
+    .to('#heroDateBadge', { opacity: 1, duration: 1 }, '-=0.3');
+
+  // Initial hidden state
+  gsap.set(['#bismillahArabic','#weddingTitleAr','#coupleNames'], { y: 30 });
+}
+
+// ════════════════════════════
+// SCROLL REVEAL
+// ════════════════════════════
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1, y: 0,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+});
+
+// Timeline items
+['tl1','tl2','tl3','tl4'].forEach((id, i) => {
+  const dir = i % 2 === 0 ? -60 : 60;
+  gsap.fromTo(`#${id}`,
+    { opacity: 0, x: dir },
+    {
+      opacity: 1, x: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: `#${id}`,
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+});
+
+// Dua blocks
+gsap.fromTo('#duaBlock',
+  { opacity: 0, scale: 0.92 },
+  {
+    opacity: 1, scale: 1,
+    duration: 1.2,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '#duaBlock', start: 'top 88%' }
+  }
+);
+
+// ════════════════════════════
+// COUNTDOWN TIMER
+// ════════════════════════════
+const nikahDate = new Date('2026-10-29T21:00:00');
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = nikahDate - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '00';
+    document.getElementById('cd-hours').textContent = '00';
+    document.getElementById('cd-mins').textContent = '00';
+    document.getElementById('cd-secs').textContent = '00';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ════════════════════════════
+// FLOATING LANTERNS
+// ════════════════════════════
+function createLantern() {
+  const hero = document.getElementById('hero');
+  const lantern = document.createElement('div');
+  lantern.className = 'lantern';
+  const size = Math.random() * 18 + 12;
+  const startX = Math.random() * 100;
+  const duration = Math.random() * 10 + 12;
+  const delay = Math.random() * 8;
+  lantern.style.cssText = `
+    left: ${startX}%;
+    bottom: 0;
+    width: ${size}px;
+    height: ${size * 1.4}px;
+    animation-duration: ${duration}s;
+    animation-delay: ${delay}s;
+  `;
+  lantern.innerHTML = `
+    <svg width="${size}" height="${size * 1.4}" viewBox="0 0 30 42" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="lg${Math.random().toString(36).substr(2,5)}" cx="50%" cy="40%">
+          <stop offset="0%" stop-color="#F0D060" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#8B6914" stop-opacity="0.4"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="15" cy="21" rx="11" ry="16" fill="rgba(212,175,55,0.15)" stroke="#D4AF37" stroke-width="0.8"/>
+      <ellipse cx="15" cy="21" rx="7" ry="10" fill="rgba(240,208,50,0.3)"/>
+      <line x1="15" y1="5" x2="15" y2="1" stroke="#D4AF37" stroke-width="0.8"/>
+      <circle cx="15" cy="21" r="4" fill="rgba(240,200,40,0.5)"/>
+    </svg>
+  `;
+  hero.appendChild(lantern);
+  setTimeout(() => lantern.remove(), (duration + delay) * 1000 + 2000);
+}
+
+setInterval(createLantern, 1800);
+for (let i = 0; i < 5; i++) setTimeout(createLantern, i * 600);
+
+// ════════════════════════════
+// PARALLAX ON SCROLL
+// ════════════════════════════
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const mosque = document.querySelector('.mosque-silhouette');
+  if (mosque) {
+    mosque.style.transform = `translateY(${scrollY * 0.15}px)`;
+  }
+  const moon = document.getElementById('crescentMoon');
+  if (moon) {
+    moon.style.transform = `translateY(${scrollY * 0.06}px)`;
+  }
+});
+
+// ════════════════════════════
+// GOLD SHIMMER on cards
+// ════════════════════════════
+document.querySelectorAll('.family-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(212,175,55,0.12) 0%, rgba(10,14,20,0.95) 60%, rgba(26,92,58,0.04) 100%)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.background = '';
+  });
+});
+
+// ════════════════════════════
+// MOBILE TOUCH SMOOTH SCROLL
+// ════════════════════════════
+(function() {
+  if ('ontouchstart' in window) {
+    document.body.style.webkitOverflowScrolling = 'touch';
+  }
+})();
+</script>
+</body>
+</html>
